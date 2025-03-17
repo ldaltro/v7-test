@@ -1,0 +1,238 @@
+:root {
+  --dialog-z-index: 9999;
+}
+
+.dialog {
+  margin: 0;
+  padding: 0;
+  border: none;
+  max-width: 600px;
+  width: 90%;
+  position: fixed;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--dialog-z-index);
+  background-color: var(--palette-bg, white);
+  color: var(--palette-text, black);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  color-scheme: light dark;
+  overflow: visible;
+}
+
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: calc(var(--dialog-z-index) - 1);
+}
+
+.commandPalette {
+  width: 100%;
+  background-color: var(--palette-bg, white);
+  color: var(--palette-text, black);
+  border-radius: 8px;
+  overflow: hidden;
+  animation: slideDown 0.2s ease-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .commandPalette {
+    --palette-bg: #1f1f1f;
+    --palette-text: #f5f5f5;
+    --palette-border: #444;
+    --palette-highlight: #2a2a2a;
+    --palette-highlight-border: #0077cc;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .commandPalette {
+    --palette-bg: white;
+    --palette-text: black;
+    --palette-border: #eaeaea;
+    --palette-highlight: #f5f5f5;
+    --palette-highlight-border: #0066cc;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--palette-border, #eaeaea);
+}
+
+.searchIcon {
+  margin-right: 12px;
+  color: #888;
+  font-size: 16px;
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  font-size: 16px;
+  outline: none;
+  padding: 0;
+  background-color: transparent;
+  color: inherit;
+}
+
+.commandList {
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.commandList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.commandList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.commandList::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.5);
+  border-radius: 3px;
+}
+
+.commandItem {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.commandItem:hover {
+  background-color: var(--palette-highlight, #f5f5f5);
+}
+
+.selected {
+  background-color: var(--palette-highlight, #f0f0f0);
+  border-left: 3px solid var(--palette-highlight-border, #0066cc);
+}
+
+.commandName {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.commandDescription {
+  font-size: 14px;
+  color: #666;
+}
+
+.noResults {
+  padding: 16px;
+  text-align: center;
+  color: #888;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.fallbackButton {
+  padding: 8px 16px;
+  background-color: var(--palette-highlight, #f5f5f5);
+  border: 1px solid var(--palette-border, #ddd);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: inherit;
+}
+
+.fallbackButton:hover {
+  background-color: var(--palette-border, #eaeaea);
+}
+
+.propertyForm {
+  padding: 20px;
+}
+
+.propertyForm h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.formGroup {
+  margin-bottom: 16px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.formGroup input,
+.formGroup select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--palette-border, #ddd);
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: var(--palette-bg, white);
+  color: inherit;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.cancelButton,
+.createButton {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancelButton {
+  background-color: transparent;
+  border: 1px solid var(--palette-border, #ddd);
+  color: inherit;
+}
+
+.cancelButton:hover {
+  background-color: var(--palette-highlight, #f5f5f5);
+}
+
+.createButton {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+}
+
+.createButton:hover {
+  background-color: #0055aa;
+}
+
+.createButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+} 

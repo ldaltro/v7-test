@@ -1,15 +1,17 @@
 import "./assets/main.css";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ProjectTable } from "./components/ProjectTable";
 import { EntityView } from "./components/EntityView";
 import { FallbackPage } from "./components/FallbackPage";
 import { ProjectProvider } from "./contexts/Project/ProjectProvider";
+import { CommandPalette } from "./components/CommandPalette";
+import { useCommandPalette } from "./hooks/useCommandPalette";
 
-function App() {
-  console.log(import.meta.env);
+function AppContent() {
+  const { isOpen, closeCommandPalette } = useCommandPalette();
 
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route path="/:workspaceId/projects/:projectId">
           {/* Table view (index route) */}
@@ -18,6 +20,7 @@ function App() {
             element={
               <ProjectProvider>
                 <ProjectTable />
+                <CommandPalette isOpen={isOpen} onClose={closeCommandPalette} />
               </ProjectProvider>
             }
           />
@@ -28,6 +31,7 @@ function App() {
             element={
               <ProjectProvider>
                 <EntityView />
+                <CommandPalette isOpen={isOpen} onClose={closeCommandPalette} />
               </ProjectProvider>
             }
           />
@@ -35,6 +39,14 @@ function App() {
         {/* Fallback route */}
         <Route path="*" element={<FallbackPage />} />
       </Routes>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }

@@ -1,0 +1,120 @@
+.container {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 999px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  padding: 6px 10px;
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 1000;
+  opacity: 0;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.selectedCount {
+  font-weight: 600;
+  padding: 0 16px;
+  color: #333;
+  font-size: 14px;
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.selectAllButton, .deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+  border: none;
+  background-color: transparent;
+}
+
+.selectAllButton {
+  color: #2563EB;   
+}
+
+.selectAllButton:hover {
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+.deleteButton {
+  color: #F43F5E;
+}
+
+.deleteButton:hover {
+  background-color: rgba(244, 63, 94, 0.05);
+}
+
+.checkIcon, .trashIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+}
+
+.checkIcon svg {
+  color: #2563EB;
+}
+
+.trashIcon svg {
+  color: #F43F5E;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .container {
+    background-color: #1f1f1f;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .selectedCount {
+    color: #f0f0f0;
+  }
+  
+  .divider {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .selectAllButton {
+    color: #60A5FA;
+  }
+  
+  .selectAllButton:hover {
+    background-color: rgba(96, 165, 250, 0.1);
+  }
+  
+  .deleteButton {
+    color: #FB7185;
+  }
+  
+  .deleteButton:hover {
+    background-color: rgba(251, 113, 133, 0.1);
+  }
+  
+  .checkIcon svg {
+    color: #60A5FA;
+  }
+  
+  .trashIcon svg {
+    color: #FB7185;
+  }
+} 
